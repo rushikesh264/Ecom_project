@@ -1,0 +1,67 @@
+
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+{% extends 'store/index.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{%static 'css/prodview.css'%}">
+<div class="container" style="font-size:10px;">
+    <a  class="btn btn-outline-dark" href="{% url 'store' %}" style="font-size:15px;" >&#x2190; Back To Store</a>
+ 
+    <br>
+    <br>
+    {% if loginflag %}
+            {% for item in doneorditem%}
+            <div class="card" style="box-shadow:1px 1px 1px 1px gray;">
+            
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+                            
+                            <img src="{{item.product.imageURL}}" style="width:300px;height:300px;padding:40px;background-color:white;"/>
+                        
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title">{{item.product.name}}</h3>
+                            <div class="rating">
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <span class="review-no">41 reviews</span>
+                            </div>
+                            <h6 class="product-description">{{item.product.description}}</h6>
+                            <h5>current price: <span style="color:black;font-weight:bolder;"> &#x20B9 {{item.product.price|floatformat:2}}</span></h5>
+                            <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                            <div style="border-bottom:1px solid gray"></div>
+                            <br>
+                            
+                            <h5 class="product-description"><span style="color:black;font-weight:bolder;">Ordered BY -</span> {{item.order.customer}}</h5>
+                            <h6 class="product-description"><span style="color:black;font-weight:bolder;">Order_Date -</span> {{item.order.date_ordered}}</h6>
+                            <h6 class="product-description"><span style="color:black;font-weight:bolder;">Transaction_ID -</span> {{item.order.transaction_id    }}</h6>
+                            <h6 class="product-description"><span style="color:black;font-weight:bolder;">Order_Status -</span> Complete</h6>
+                                                    
+                                                
+                        
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    {% else %}
+            <br><br><br> <br><br><br>
+            <h3>Sorry Your are not Registered!!!</h3>
+            <br><br><br> <br><br><br>
+    {% endif %}
+</div>
+
+
+
+{% endblock content %} 
+
